@@ -1,0 +1,27 @@
+{
+  "name": "meditation-app-auth-microsevices",
+  "version": "1.0.0",
+  "description": "",
+  "main": "auth/server.js",
+  "scripts": {
+    "start": "ts-node-dev server.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Authentic48/meditation-app-auth-microsevices.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Authentic48/meditation-app-auth-microsevices/issues"
+  },
+  "homepage": "https://github.com/Authentic48/meditation-app-auth-microsevices#readme",
+  "dependencies": {
+    "@types/express": "^4.17.13",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.3.5"
+  }
+}
