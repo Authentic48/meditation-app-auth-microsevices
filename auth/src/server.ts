@@ -1,22 +1,21 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import { errorHandler } from './middlewares/errorHandler'
-import { NotFoundError } from './errors/notFoundError';
 
+import { errorHandler } from './middlewares/errorHandler';
+import { NotFoundError } from './errors/notFoundError';
+import { signUp } from './routes/signup';
 
 dotenv.config();
 
 const app = express();
 
-app.get('/api/auth/login', (req, res) => {
-  return res.json('Its  working with ingress!!!!');
+app.use(signUp)
+
+app.all('*', () => {
+  throw new NotFoundError();
 });
 
-app.all('*', ()=> {
-  throw new NotFoundError()
-})
-
-app.use(errorHandler)
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 

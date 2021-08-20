@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
         - name: auth
-          image: authentic048/auth
-          imagePullPolicy: Never
+          image: us.gcr.io/meditation-323509/auth
+          # imagePullPolicy: Never
 ---
 apiVersion: v1
 kind: Service
