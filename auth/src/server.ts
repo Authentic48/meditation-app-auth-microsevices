@@ -5,8 +5,11 @@ import dotenv from 'dotenv';
 import { errorHandler } from './middlewares/errorHandler';
 import { NotFoundError } from './errors/notFoundError';
 import { signUp } from './routes/signup';
+import { connectDB } from './config/db';
 
 dotenv.config();
+
+connectDB();
 
 const app = express();
 
@@ -14,7 +17,7 @@ app.use(express.json());
 
 app.use(signUp);
 
-app.all('*', async() => {
+app.all('*', async () => {
   throw new NotFoundError();
 });
 
