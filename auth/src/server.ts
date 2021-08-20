@@ -1,4 +1,5 @@
 import express from 'express';
+import 'express-async-errors';
 import dotenv from 'dotenv';
 
 import { errorHandler } from './middlewares/errorHandler';
@@ -9,9 +10,11 @@ dotenv.config();
 
 const app = express();
 
-app.use(signUp)
+app.use(express.json());
 
-app.all('*', () => {
+app.use(signUp);
+
+app.all('*', async() => {
   throw new NotFoundError();
 });
 
