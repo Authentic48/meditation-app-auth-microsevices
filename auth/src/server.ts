@@ -6,7 +6,7 @@ import { errorHandler } from './middlewares/errorHandler';
 import { NotFoundError } from './errors/notFoundError';
 import { signUp } from './routes/signup';
 import { connectDB } from './config/db';
-
+import { signIn } from './routes/signin';
 
 dotenv.config();
 
@@ -17,6 +17,8 @@ const app = express();
 app.use(express.json());
 
 app.use(signUp);
+app.use(signIn);
+
 
 app.all('*', async () => {
   throw new NotFoundError();
