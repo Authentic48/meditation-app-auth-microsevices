@@ -2,6 +2,7 @@ import express, { json, Request, Response } from 'express';
 import { CustomError } from '../errors/customError';
 import { User } from '../models/userModel';
 import { body, validationResult } from 'express-validator';
+import { RequestValidationError } from '../errors/validationError';
 
 const router = express.Router();
 
@@ -19,7 +20,7 @@ router.post(
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.json(errors);
+      throw new RequestValidationError(errors.array());
     }
     const { email, password, name } = req.body;
 
