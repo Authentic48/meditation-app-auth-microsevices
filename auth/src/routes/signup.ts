@@ -33,7 +33,11 @@ router.post(
     const user = User.build({ name, email, password });
     await user.save();
 
-    res.status(201).send(user);
+    res.status(201).json({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+    });
   }
 );
 
