@@ -1,13 +1,39 @@
-import express from 'express';
+import express, { json, Request, Response } from 'express';
 import { CustomError } from '../errors/customError';
+import { User } from '../models/userModel';
+import { body, validationResult } from 'express-validator';
 
+const router = express.Router();
 
+router.post(
+  '/api/auth/register',
+  [
+    body('name').isString().withMessage('Name is invalid'),
+    body('email').isEmail().withMessage('Email must be valid'),
+    body('password')
+      .trim()
+      .isLength({ min: 4, max: 20 })
+      .withMessage('Password must be between 4 and 20 characters'),
+  ],
+  async (req: Request, res: Response) => {
+    const errors = validationResult(req);
 
-const router = express.Router()
+    if (!errors.isEmpty()) {
+      return res.json(errors);
+    }
+    const { email, password, name } = req.body;
 
-router.post('/api/auth/register', (req, res) =>{
+    const existingUser = await User.findOne({ email });
 
-   res.json('it\'s working!!!!!')
-})
+    if (existingUser) {
+      return res.json({ message: 'User already exist' });
+    }
 
-export { router as signUp } 
+    const user = User.build({ name, email, password });
+    await user.save();
+
+    res.status(201).send(user);
+  }
+);
+
+export { router as signUp };

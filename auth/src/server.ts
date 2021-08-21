@@ -7,6 +7,7 @@ import { NotFoundError } from './errors/notFoundError';
 import { signUp } from './routes/signup';
 import { connectDB } from './config/db';
 
+
 dotenv.config();
 
 connectDB();
