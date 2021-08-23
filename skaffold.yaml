@@ -8,9 +8,9 @@ build:
   # local:
   #   push: false
   googleCloudBuild: 
-    projectId:  meditation-xxxxx
+    projectId:  meditation-323509
   artifacts:
-  - image: us.gcr.io/meditation-xxxx/auth
+  - image: us.gcr.io/meditation-323509/auth
     context: auth
     docker:
       dockerfile: Dockerfile
