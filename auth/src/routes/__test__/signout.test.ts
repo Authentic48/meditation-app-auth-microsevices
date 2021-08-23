@@ -17,8 +17,6 @@ describe('POST /api/auth/signout ', () => {
       .send({})
       .expect(200);
 
-    console.log(response.get('Set-Cookie'));
-
     expect(response.get('Set-Cookie')[0]).toEqual(
       'express:sess=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; httponly'
     );
