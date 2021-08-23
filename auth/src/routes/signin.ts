@@ -1,8 +1,9 @@
 import express, { Request, Response } from 'express';
-import { body, validationResult } from 'express-validator';
+import { body } from 'express-validator';
+
 import { User } from '../models/userModel';
-import { RequestValidationError } from '../errors/validationError';
 import { BadRequest } from '../errors/badRequest';
+import { validationRequest } from '../middlewares/validateRequest';
 
 const route = express.Router();
 
@@ -13,13 +14,8 @@ route.post(
 
     body('password').trim().notEmpty().withMessage('Password must be supplied'),
   ],
-  (req: Request, res: Response) => {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      throw new RequestValidationError(errors.array());
-    }
-  }
+  validationRequest,
+  (req: Request, res: Response) => {}
 );
 
 export { route as signIn };
