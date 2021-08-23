@@ -1,13 +1,12 @@
 import express, { Request, Response } from 'express';
-import { body } from 'express-validator';
 import jwt from 'jsonwebtoken';
-
-import { User } from '../models/userModel';
-import { BadRequest } from '../errors/badRequest';
-import { validationRequest } from '../middlewares/validateRequest';
 
 const route = express.Router();
 
-route.post('/api/auth/currentuser', async (req: Request, res: Response) => {});
+route.post('/api/auth/signout', async (req: Request, res: Response) => {
+  req.session = null;
+
+  res.json({});
+});
 
 export { route as signOut };
