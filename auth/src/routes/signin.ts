@@ -32,8 +32,6 @@ route.post(
       throw new BadRequest('Invalid credentials');
     }
 
-    console.log(passwordsMatch);
-
     const userJwt = jwt.sign(
       {
         id: existUser.id,

@@ -8,7 +8,7 @@ export class Password {
     return await hashedPassowrd;
   }
 
-  static async Compare(storepassword: string, suppliedPassword: string) {
+  static async Compare(suppliedPassword: string, storepassword: string) {
     return await bcrypt.compare(suppliedPassword, storepassword);
   }
 }

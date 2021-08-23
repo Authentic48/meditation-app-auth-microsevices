@@ -8,6 +8,8 @@ import { NotFoundError } from './errors/notFoundError';
 import { signUp } from './routes/signup';
 import { connectDB } from './config/db';
 import { signIn } from './routes/signin';
+import { signOut } from './routes/signout';
+import { currentUser } from './routes/currentUser';
 
 dotenv.config();
 
@@ -23,6 +25,8 @@ app.use(
 
 app.use(signUp);
 app.use(signIn);
+app.use(signOut);
+app.use(currentUser);
 
 app.all('*', async () => {
   throw new NotFoundError();
