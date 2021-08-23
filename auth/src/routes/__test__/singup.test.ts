@@ -45,4 +45,41 @@ describe('POST /api/auth/register', () => {
       })
       .expect(400);
   });
+
+  it('returns a 400 with missing email, password and name', async () => {
+    return request(app).post('/api/auth/register').send({}).expect(400);
+  });
+
+  it('Disallows diplicated email', async () => {
+    await request(app)
+      .post('/api/auth/register')
+      .send({
+        name: 'test',
+        email: 'test@test.com',
+        password: 'password',
+      })
+      .expect(201);
+
+    await request(app)
+      .post('/api/auth/register')
+      .send({
+        name: 'test',
+        email: 'test@test.com',
+        password: 'password',
+      })
+      .expect(400);
+  });
+});
+
+it('sets a cookie after successful signup', async () => {
+  const response = await request(app)
+    .post('/api/auth/register')
+    .send({
+      name: 'test',
+      email: 'test@test.com',
+      password: 'password',
+    })
+    .expect(201);
+
+  expect(response.get('Set-Cookie')).toBeDefined();
 });
