@@ -41,15 +41,11 @@ router.post(
         id: user.id,
         email: user.email,
       },
-      'naDU7PGDyg6p8'
+      process.env.JWT_KEY!
     );
     req.session = { jwt: userJwt };
 
-    res.status(201).json({
-      id: user.id,
-      name: user.name,
-      email: user.email,
-    });
+    res.status(201).json(user);
   }
 );
 

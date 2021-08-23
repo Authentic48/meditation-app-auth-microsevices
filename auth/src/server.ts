@@ -11,8 +11,6 @@ import { signIn } from './routes/signin';
 
 dotenv.config();
 
-connectDB();
-
 const app = express();
 app.set('trust proxy', true);
 app.use(express.json());
@@ -34,6 +32,15 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`App in ${process.env.NODE_ENV} is running on ${PORT}`);
-});
+const start = () => {
+  if (!process.env.JWT_KEY) {
+    throw new Error('JWT_KEY must be defined');
+  }
+  connectDB();
+
+  app.listen(PORT, () => {
+    console.log(`App in ${process.env.NODE_ENV} is running on ${PORT}`);
+  });
+};
+
+start();
