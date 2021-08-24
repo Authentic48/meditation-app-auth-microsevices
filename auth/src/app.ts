@@ -2,9 +2,8 @@ import express from 'express';
 import 'express-async-errors';
 import dotenv from 'dotenv';
 import cookieSession from 'cookie-session';
+import { errorHandler, NotFoundError } from '@authentic48/common';
 
-import { errorHandler } from './middlewares/errorHandler';
-import { NotFoundError } from './errors/notFoundError';
 import { signUp } from './routes/signup';
 import { signIn } from './routes/signin';
 import { signOut } from './routes/signout';

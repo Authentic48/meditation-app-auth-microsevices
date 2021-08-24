@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { currentLogInUser } from '../middlewares/currentUser';
+import { currentLogInUser } from '@authentic48/common';
 
 const route = express.Router();
 
