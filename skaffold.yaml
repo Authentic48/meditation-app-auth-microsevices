@@ -7,14 +7,22 @@ deploy:
 build:
   # local:
   #   push: false
-  googleCloudBuild: 
-    projectId:  meditation-323509
+  googleCloudBuild:
+    projectId: meditation-323509
   artifacts:
-  - image: us.gcr.io/meditation-323509/auth
-    context: auth
-    docker:
-      dockerfile: Dockerfile
-    sync:
+    - image: us.gcr.io/meditation-323509/auth
+      context: auth
+      docker:
+        dockerfile: Dockerfile
+      sync:
         manual:
           - src: 'auth/src/**/*.ts'
+            dest: .
+    - image: us.gcr.io/meditation-323509/meditation
+      context: meditation-session
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'meditation-session/src/**/*.ts'
             dest: .
