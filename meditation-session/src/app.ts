@@ -1,7 +1,16 @@
 import express from 'express';
 import 'express-async-errors';
 import cookieSession from 'cookie-session';
-import { errorHandler, NotFoundError } from '@authentic48/common';
+import {
+  currentLogInUser,
+  errorHandler,
+  NotFoundError,
+} from '@authentic48/common';
+
+import { MeditationCreate } from './routes/new';
+import { MeditationGetAll } from './routes/index';
+import { MeditationShow } from './routes/show';
+import { MeditationUpdate } from './routes/update';
 
 const app = express();
 app.set('trust proxy', true);
@@ -12,6 +21,11 @@ app.use(
     secure: process.env.NODE_ENV !== 'test',
   })
 );
+app.use(currentLogInUser);
+app.use(MeditationCreate);
+app.use(MeditationShow);
+app.use(MeditationGetAll);
+app.use(MeditationUpdate);
 
 app.all('*', async () => {
   throw new NotFoundError();
