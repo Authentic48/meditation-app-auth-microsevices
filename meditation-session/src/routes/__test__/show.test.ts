@@ -3,7 +3,7 @@ import { app } from '../../app';
 import { Meditation } from '../../model/meditation';
 import mongoose from 'mongoose';
 
-describe('POST /api/meditations/:id', () => {
+describe('GET /api/meditations/:id', () => {
   it('returns a 404 if the meditation is not found', async () => {
     const id = new mongoose.Types.ObjectId().toHexString();
 
