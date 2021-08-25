@@ -30,7 +30,7 @@ describe('POST /api/meditations/create', () => {
       .set('Cookie', global.signin())
       .send({
         order: 'khgtyv',
-        title: 'Power of Love edit',
+        title: 'Power of Love',
         track: 0,
         subtitle: 'Love and Peace',
         time: 'bkhyit',
@@ -47,7 +47,7 @@ describe('POST /api/meditations/create', () => {
       .set('Cookie', global.signin())
       .send({
         order: 1,
-        title: 'Power of Love edit',
+        title: 'Power of Love',
         track: 0,
         subtitle: 'Love and Peace',
         time: 2,
