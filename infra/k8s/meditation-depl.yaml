@@ -16,6 +16,8 @@ spec:
         - name: meditation
           image: us.gcr.io/meditation-323509/meditation
           env:
+            - name: MONGO_URI
+              value: 'mongodb://meditation-mongo-srv:27017/meditation'
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:

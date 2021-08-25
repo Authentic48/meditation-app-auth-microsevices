@@ -7,10 +7,14 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: 'true'
 spec:
   rules:
-        - host: meditation.dev
-          http:
-            paths:
-                - path: /api/auth/?(.*)
-                  backend:
-                    serviceName: auth-srv
-                    servicePort: 5000
+    - host: meditation.dev
+      http:
+        paths:
+          - path: /api/auth/?(.*)
+            backend:
+              serviceName: auth-srv
+              servicePort: 5000
+          - path: /api/meditations/?(.*)
+            backend:
+              serviceName: meditation-srv
+              servicePort: 5000
