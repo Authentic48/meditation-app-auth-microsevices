@@ -4,7 +4,7 @@ import path from 'path';
 import express, { Request, Response } from 'express';
 
 const storage = new Storage({
-  projectId: 'meditations-53418',
+  projectId: 'xxxxxxxx',
   keyFilename: 'service-account-credentials.json',
 });
 
@@ -17,7 +17,7 @@ const newmulter = multer({
   },
 });
 
-const uploadImage = (file) => {
+const uploadFile = (file) => {
   return new Promise((resolve, reject) => {
     if (!file) {
       reject('No file');
@@ -49,13 +49,13 @@ const uploadImage = (file) => {
 const route = express.Router();
 
 route.post(
-  '/api/meditations/upload/image',
+  '/api/meditations/files/upload/',
   newmulter.single('file'),
   (req: Request, res: Response) => {
     console.log('Image Upload !!');
     let file = req.file;
     if (file) {
-      uploadImage(file)
+      uploadFile(file)
         .then((success) => {
           res.status(200).send({
             success,
@@ -68,4 +68,4 @@ route.post(
   }
 );
 
-export { route as uploadImage };
+export { route as uploadFile };
