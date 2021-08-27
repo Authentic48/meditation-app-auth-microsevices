@@ -11,6 +11,7 @@ import { MeditationCreate } from './routes/new';
 import { MeditationGetAll } from './routes/index';
 import { MeditationShow } from './routes/show';
 import { MeditationUpdate } from './routes/update';
+import { uploadImage } from './routes/upload-image';
 
 const app = express();
 app.set('trust proxy', true);
@@ -26,6 +27,7 @@ app.use(MeditationCreate);
 app.use(MeditationShow);
 app.use(MeditationGetAll);
 app.use(MeditationUpdate);
+app.use(uploadImage);
 
 app.all('*', async () => {
   throw new NotFoundError();
